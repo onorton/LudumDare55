@@ -1,0 +1,559 @@
+[gd_scene load_steps=31 format=3 uid="uid://bebqe1qpyyktd"]
+
+[ext_resource type="Script" path="res://Scripts/other_input.gd" id="1_0oiib"]
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_n0ss4"]
+[ext_resource type="PackedScene" uid="uid://cxi7ipp5wo3a" path="res://Scenes/placement_location.tscn" id="1_nist8"]
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="1_siwk6"]
+[ext_resource type="StyleBox" uid="uid://dc8qi1cxv3i5i" path="res://styleboxflat.tres" id="2_3g6xa"]
+[ext_resource type="Texture2D" uid="uid://cukl8g31a0nt8" path="res://Sprites/candle.png" id="2_3325i"]
+[ext_resource type="Script" path="res://Scripts/word_management.gd" id="2_c6dpn"]
+[ext_resource type="Script" path="res://Scripts/spoken_text.gd" id="2_rtlkp"]
+[ext_resource type="Texture2D" uid="uid://dtp7a1u2c5m8g" path="res://Sprites/Background.png" id="2_yjttb"]
+[ext_resource type="Script" path="res://Scripts/item.gd" id="3_lwgqs"]
+[ext_resource type="Script" path="res://Scripts/placement_locations.gd" id="3_qtdn3"]
+[ext_resource type="Script" path="res://Scripts/book.gd" id="6_2ivbo"]
+[ext_resource type="Texture2D" uid="uid://bit5sdw5p5ru8" path="res://Sprites/arrow.png" id="6_hbbt5"]
+[ext_resource type="Texture2D" uid="uid://4hcjlexmsddv" path="res://Sprites/candle_icon.png" id="6_v7spw"]
+[ext_resource type="Texture2D" uid="uid://bdaov8dmf4iha" path="res://Sprites/cheese_icon.png" id="8_51pmp"]
+[ext_resource type="Texture2D" uid="uid://xsclnbrm83aq" path="res://Sprites/cheese.png" id="8_f5b85"]
+[ext_resource type="Texture2D" uid="uid://qeliineme57" path="res://Sprites/orange_icon.png" id="9_f41dr"]
+[ext_resource type="Texture2D" uid="uid://co64ggst4oace" path="res://Sprites/orange.png" id="10_sonsn"]
+[ext_resource type="Texture2D" uid="uid://fkksqqfgr1ii" path="res://Sprites/meat.png" id="11_2y7mo"]
+[ext_resource type="Texture2D" uid="uid://0r71gs4s5l1v" path="res://Sprites/meat_icon.png" id="11_6am72"]
+[ext_resource type="Texture2D" uid="uid://cc7uvos2u7o2m" path="res://Sprites/skull_icon.png" id="11_bqiyp"]
+[ext_resource type="Texture2D" uid="uid://6a60br4mx8cc" path="res://Sprites/book.png" id="11_dh7rk"]
+[ext_resource type="Texture2D" uid="uid://i3lfvssax1ni" path="res://Sprites/book_icon.png" id="11_ryk8u"]
+[ext_resource type="Texture2D" uid="uid://rtxur0yy1gt5" path="res://Sprites/skull.png" id="12_466i0"]
+[ext_resource type="AudioStream" uid="uid://br2w6v7j0rk8w" path="res://Audio/music.wav" id="17_gd0yq"]
+[ext_resource type="Script" path="res://Scripts/sound_effect_player.gd" id="18_gaqne"]
+[ext_resource type="Texture2D" uid="uid://davqceyfnptnb" path="res://Sprites/ripped_right_page_2.png" id="21_dpfsj"]
+[ext_resource type="Texture2D" uid="uid://b8nba2s8hgmji" path="res://Sprites/sound_off.png" id="24_yikg8"]
+[ext_resource type="Texture2D" uid="uid://b4eyrwsehlc68" path="res://Sprites/sound_on.png" id="25_a2cvf"]
+
+[sub_resource type="Theme" id="Theme_078sr"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_n0ss4")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(0.667, 0.667)
+texture = ExtResource("2_yjttb")
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("1_siwk6")
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0oiib")
+
+[node name="Spoken" type="MarginContainer" parent="UI"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Spoken Text" type="RichTextLabel" parent="UI/Spoken"]
+visible = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center]dsfdfdf sdfsdf fsdf sdfsdf sfd...[/center]
+"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("2_rtlkp")
+
+[node name="Bottom Menu" type="MarginContainer" parent="UI"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -288.0
+offset_top = -200.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Bottom Menu"]
+layout_direction = 3
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 2
+
+[node name="Items" type="PanelContainer" parent="UI/Bottom Menu/HBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="UI/Bottom Menu/HBoxContainer/Items"]
+custom_minimum_size = Vector2(100, 100)
+layout_direction = 2
+layout_mode = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 3
+
+[node name="Candle" type="TextureRect" parent="UI/Bottom Menu/HBoxContainer/Items/GridContainer"]
+layout_mode = 2
+texture = ExtResource("6_v7spw")
+script = ExtResource("3_lwgqs")
+world_sprite = ExtResource("2_3325i")
+item_name = "Candle"
+
+[node name="Candle2" type="TextureRect" parent="UI/Bottom Menu/HBoxContainer/Items/GridContainer"]
+layout_mode = 2
+texture = ExtResource("6_v7spw")
+script = ExtResource("3_lwgqs")
+world_sprite = ExtResource("2_3325i")
+item_name = "Candle"
+
+[node name="Candle3" type="TextureRect" parent="UI/Bottom Menu/HBoxContainer/Items/GridContainer"]
+layout_mode = 2
+texture = ExtResource("6_v7spw")
+script = ExtResource("3_lwgqs")
+world_sprite = ExtResource("2_3325i")
+item_name = "Candle"
+
+[node name="Orange" type="TextureRect" parent="UI/Bottom Menu/HBoxContainer/Items/GridContainer"]
+layout_mode = 2
+texture = ExtResource("9_f41dr")
+script = ExtResource("3_lwgqs")
+world_sprite = ExtResource("10_sonsn")
+item_name = "Orange"
+
+[node name="Meat" type="TextureRect" parent="UI/Bottom Menu/HBoxContainer/Items/GridContainer"]
+layout_mode = 2
+texture = ExtResource("11_6am72")
+script = ExtResource("3_lwgqs")
+world_sprite = ExtResource("11_2y7mo")
+item_name = "Meat"
+
+[node name="Skull" type="TextureRect" parent="UI/Bottom Menu/HBoxContainer/Items/GridContainer"]
+layout_mode = 2
+texture = ExtResource("11_bqiyp")
+script = ExtResource("3_lwgqs")
+world_sprite = ExtResource("12_466i0")
+item_name = "Skull"
+
+[node name="Cheese" type="TextureRect" parent="UI/Bottom Menu/HBoxContainer/Items/GridContainer"]
+layout_mode = 2
+texture = ExtResource("8_51pmp")
+script = ExtResource("3_lwgqs")
+world_sprite = ExtResource("8_f5b85")
+item_name = "Cheese"
+
+[node name="Words" type="PanelContainer" parent="UI/Bottom Menu/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+script = ExtResource("2_c6dpn")
+
+[node name="GridContainer" type="GridContainer" parent="UI/Bottom Menu/HBoxContainer/Words"]
+layout_mode = 2
+columns = 2
+
+[node name="Book" type="TextureButton" parent="UI/Bottom Menu/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+texture_normal = ExtResource("11_ryk8u")
+
+[node name="Book" type="TextureRect" parent="UI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -255.0
+offset_top = -183.0
+offset_right = 245.0
+offset_bottom = 217.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_dh7rk")
+script = ExtResource("6_2ivbo")
+metadata/_edit_use_anchors_ = true
+
+[node name="Left Page Text" type="RichTextLabel" parent="UI/Book"]
+custom_minimum_size = Vector2(200, 200)
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -120.0
+offset_right = -10.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "1. Place a candle at the front point of the pentagram"
+
+[node name="Right Page" type="TextureRect" parent="UI/Book"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 28.0
+offset_right = 500.0
+offset_bottom = 328.0
+texture = ExtResource("21_dpfsj")
+
+[node name="Right Page Text" type="RichTextLabel" parent="UI/Book"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -120.0
+offset_right = 210.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "1. Place a candle at the front point of the pentagram"
+
+[node name="Left Arrow" type="TextureButton" parent="UI/Book"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = 125.0
+offset_right = -75.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("6_hbbt5")
+texture_pressed = ExtResource("6_hbbt5")
+flip_h = true
+
+[node name="Right Arrow" type="TextureButton" parent="UI/Book"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 300.0
+offset_top = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("6_hbbt5")
+texture_pressed = ExtResource("6_hbbt5")
+
+[node name="Blocker" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Menus" type="CenterContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 2
+
+[node name="Game Over" type="PanelContainer" parent="UI/Menus"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("2_3g6xa")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Menus/Game Over"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Menus/Game Over/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="RichTextLabel" parent="UI/Menus/Game Over/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Game Over!"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Message" type="RichTextLabel" parent="UI/Menus/Game Over/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "You managed to summon a "
+fit_content = true
+
+[node name="Try Again" type="Button" parent="UI/Menus/Game Over/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Try Again
+"
+
+[node name="Quit" type="Button" parent="UI/Menus/Game Over/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit"
+
+[node name="Paused" type="PanelContainer" parent="UI/Menus"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("2_3g6xa")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Menus/Paused"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Menus/Paused/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Menus/Paused/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="RichTextLabel" parent="UI/Menus/Paused/MarginContainer/VBoxContainer/CenterContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Paused"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Restart" type="Button" parent="UI/Menus/Paused/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Restart
+"
+
+[node name="Quit" type="Button" parent="UI/Menus/Paused/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit"
+
+[node name="Victory" type="PanelContainer" parent="UI/Menus"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("2_3g6xa")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Menus/Victory"]
+layout_mode = 2
+theme = SubResource("Theme_078sr")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Menus/Victory/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Menus/Victory/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="RichTextLabel" parent="UI/Menus/Victory/MarginContainer/VBoxContainer/CenterContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Well Done!"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Victory Text" type="RichTextLabel" parent="UI/Menus/Victory/MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]You have managed to sumon the demon[/center]"
+fit_content = true
+autowrap_mode = 2
+
+[node name="Thanks" type="RichTextLabel" parent="UI/Menus/Victory/MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Thanks for playing!"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Quit" type="Button" parent="UI/Menus/Victory/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit"
+
+[node name="Welcome" type="PanelContainer" parent="UI/Menus"]
+visible = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("2_3g6xa")
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Menus/Welcome"]
+layout_mode = 2
+theme = SubResource("Theme_078sr")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Menus/Welcome/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CenterContainer" type="CenterContainer" parent="UI/Menus/Welcome/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="RichTextLabel" parent="UI/Menus/Welcome/MarginContainer/VBoxContainer/CenterContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "My First Summoning"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Text" type="RichTextLabel" parent="UI/Menus/Welcome/MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]Your task is to summon a demon. Follow the grimoire carefully.
+Good luck![/center]"
+fit_content = true
+autowrap_mode = 2
+
+[node name="Start" type="Button" parent="UI/Menus/Welcome/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Start"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="TextureButton" type="TextureButton" parent="UI/MarginContainer"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("24_yikg8")
+texture_pressed = ExtResource("25_a2cvf")
+
+[node name="Placement Locations" type="Node2D" parent="."]
+script = ExtResource("3_qtdn3")
+
+[node name="Placement Location 1" parent="Placement Locations" instance=ExtResource("1_nist8")]
+position = Vector2(638, 665)
+
+[node name="Placement Location 2" parent="Placement Locations" instance=ExtResource("1_nist8")]
+position = Vector2(389, 598)
+
+[node name="Placement Location 3" parent="Placement Locations" instance=ExtResource("1_nist8")]
+position = Vector2(497, 493)
+
+[node name="Placement Location 4" parent="Placement Locations" instance=ExtResource("1_nist8")]
+position = Vector2(783, 493)
+
+[node name="Placement Location 5" parent="Placement Locations" instance=ExtResource("1_nist8")]
+position = Vector2(892, 594)
+
+[node name="Placement Location Centre" parent="Placement Locations" instance=ExtResource("1_nist8")]
+position = Vector2(640, 564)
+
+[node name="Music Player" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_gd0yq")
+autoplay = true
+
+[node name="Sound Effect Player" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(282, 153)
+max_polyphony = 6
+script = ExtResource("18_gaqne")
+
+[connection signal="sound_triggered" from="UI" to="Sound Effect Player" method="_on_play_sound_effect"]
+[connection signal="incantation_finished" from="UI/Spoken/Spoken Text" to="." method="_on_instruction_followed"]
+[connection signal="gui_input" from="UI/Bottom Menu/HBoxContainer/Items/GridContainer/Candle" to="UI/Bottom Menu/HBoxContainer/Items/GridContainer/Candle" method="_on_gui_input"]
+[connection signal="trigger_sound" from="UI/Bottom Menu/HBoxContainer/Items/GridContainer/Candle" to="Sound Effect Player" method="_on_play_sound_effect"]
+[connection signal="gui_input" from="UI/Bottom Menu/HBoxContainer/Items/GridContainer/Candle2" to="UI/Bottom Menu/HBoxContainer/Items/GridContainer/Candle2" method="_on_gui_input"]
+[connection signal="trigger_sound" from="UI/Bottom Menu/HBoxContainer/Items/GridContainer/Candle2" to="Sound Effect Player" method="_on_play_sound_effect"]
+[connection signal="gui_input" from="UI/Bottom Menu/HBoxContainer/Items/GridContainer/Candle3" to="UI/Bottom Menu/HBoxContainer/Items/GridContainer/Candle3" method="_on_gui_input"]
+[connection signal="trigger_sound" from="UI/Bottom Menu/HBoxContainer/Items/GridContainer/Candle3" to="Sound Effect Player" method="_on_play_sound_effect"]
+[connection signal="gui_input" from="UI/Bottom Menu/HBoxContainer/Items/GridContainer/Orange" to="UI/Bottom Menu/HBoxContainer/Items/GridContainer/Orange" method="_on_gui_input"]
+[connection signal="trigger_sound" from="UI/Bottom Menu/HBoxContainer/Items/GridContainer/Orange" to="Sound Effect Player" method="_on_play_sound_effect"]
+[connection signal="gui_input" from="UI/Bottom Menu/HBoxContainer/Items/GridContainer/Meat" to="UI/Bottom Menu/HBoxContainer/Items/GridContainer/Meat" method="_on_gui_input"]
+[connection signal="trigger_sound" from="UI/Bottom Menu/HBoxContainer/Items/GridContainer/Meat" to="Sound Effect Player" method="_on_play_sound_effect"]
+[connection signal="gui_input" from="UI/Bottom Menu/HBoxContainer/Items/GridContainer/Skull" to="UI/Bottom Menu/HBoxContainer/Items/GridContainer/Skull" method="_on_gui_input"]
+[connection signal="trigger_sound" from="UI/Bottom Menu/HBoxContainer/Items/GridContainer/Skull" to="Sound Effect Player" method="_on_play_sound_effect"]
+[connection signal="gui_input" from="UI/Bottom Menu/HBoxContainer/Items/GridContainer/Cheese" to="UI/Bottom Menu/HBoxContainer/Items/GridContainer/Cheese" method="_on_gui_input"]
+[connection signal="trigger_sound" from="UI/Bottom Menu/HBoxContainer/Items/GridContainer/Cheese" to="Sound Effect Player" method="_on_play_sound_effect"]
+[connection signal="sound_triggered" from="UI/Bottom Menu/HBoxContainer/Words" to="Sound Effect Player" method="_on_play_sound_effect"]
+[connection signal="word_selected" from="UI/Bottom Menu/HBoxContainer/Words" to="UI/Spoken/Spoken Text" method="_set_spoken_text"]
+[connection signal="pressed" from="UI/Bottom Menu/HBoxContainer/Book" to="UI/Book" method="_on_book_icon_pressed"]
+[connection signal="sound_triggered" from="UI/Book" to="Sound Effect Player" method="_on_play_sound_effect"]
+[connection signal="pressed" from="UI/Book/Left Arrow" to="UI/Book" method="_on_turn_to_previous_page"]
+[connection signal="pressed" from="UI/Book/Right Arrow" to="UI/Book" method="_on_turn_to_next_page"]
+[connection signal="pressed" from="UI/Menus/Game Over/MarginContainer/VBoxContainer/Try Again" to="UI" method="_on_try_again"]
+[connection signal="pressed" from="UI/Menus/Game Over/MarginContainer/VBoxContainer/Quit" to="UI" method="_on_quit"]
+[connection signal="pressed" from="UI/Menus/Paused/MarginContainer/VBoxContainer/Restart" to="UI" method="_on_try_again"]
+[connection signal="pressed" from="UI/Menus/Paused/MarginContainer/VBoxContainer/Quit" to="UI" method="_on_quit"]
+[connection signal="pressed" from="UI/Menus/Victory/MarginContainer/VBoxContainer/Quit" to="UI" method="_on_quit"]
+[connection signal="pressed" from="UI/Menus/Welcome/MarginContainer/VBoxContainer/Start" to="UI" method="_on_start"]
+[connection signal="toggled" from="UI/MarginContainer/TextureButton" to="Music Player" method="_set_playing"]
+[connection signal="toggled" from="UI/MarginContainer/TextureButton" to="Sound Effect Player" method="_on_mute_button_toggled"]
+[connection signal="item_placed" from="Placement Locations/Placement Location 1" to="." method="_on_instruction_followed"]
+[connection signal="item_placed" from="Placement Locations/Placement Location 2" to="." method="_on_instruction_followed"]
+[connection signal="item_placed" from="Placement Locations/Placement Location 3" to="." method="_on_instruction_followed"]
+[connection signal="item_placed" from="Placement Locations/Placement Location 4" to="." method="_on_instruction_followed"]
+[connection signal="item_placed" from="Placement Locations/Placement Location 5" to="." method="_on_instruction_followed"]
+[connection signal="item_placed" from="Placement Locations/Placement Location Centre" to="." method="_on_instruction_followed"]

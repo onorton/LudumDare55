@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://bp5ic63ddabq2"]
+
+[node name="Button" type="Button"]
+text = "Asda"
