@@ -484,7 +484,7 @@ grow_horizontal = 0
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 
-[node name="TextureButton" type="TextureButton" parent="UI/MarginContainer"]
+[node name="Sound Toggle" type="TextureButton" parent="UI/MarginContainer"]
 layout_mode = 2
 toggle_mode = true
 button_pressed = true
@@ -515,6 +515,7 @@ position = Vector2(640, 564)
 [node name="Music Player" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("17_gd0yq")
 autoplay = true
+script = ExtResource("18_gaqne")
 
 [node name="Sound Effect Player" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(282, 153)
@@ -549,8 +550,8 @@ script = ExtResource("18_gaqne")
 [connection signal="pressed" from="UI/Menus/Paused/MarginContainer/VBoxContainer/Quit" to="UI" method="_on_quit"]
 [connection signal="pressed" from="UI/Menus/Victory/MarginContainer/VBoxContainer/Quit" to="UI" method="_on_quit"]
 [connection signal="pressed" from="UI/Menus/Welcome/MarginContainer/VBoxContainer/Start" to="UI" method="_on_start"]
-[connection signal="toggled" from="UI/MarginContainer/TextureButton" to="Music Player" method="_set_playing"]
-[connection signal="toggled" from="UI/MarginContainer/TextureButton" to="Sound Effect Player" method="_on_mute_button_toggled"]
+[connection signal="toggled" from="UI/MarginContainer/Sound Toggle" to="Music Player" method="_on_mute_button_toggled"]
+[connection signal="toggled" from="UI/MarginContainer/Sound Toggle" to="Sound Effect Player" method="_on_mute_button_toggled"]
 [connection signal="item_placed" from="Placement Locations/Placement Location 1" to="." method="_on_instruction_followed"]
 [connection signal="item_placed" from="Placement Locations/Placement Location 2" to="." method="_on_instruction_followed"]
 [connection signal="item_placed" from="Placement Locations/Placement Location 3" to="." method="_on_instruction_followed"]
